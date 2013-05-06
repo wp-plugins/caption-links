@@ -1,4 +1,4 @@
-=== Plugin Name ===
+=== Caption Linker ===
 Contributors: weissmike
 Donate link: http://weissmike.com/
 Tags: media, caption, upload, file, link, html
