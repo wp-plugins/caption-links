@@ -33,6 +33,8 @@ class caption_linker {
     public function caption_linker_enqueue($hook)  
     {
         wp_enqueue_script( 'caption_linker', plugins_url( 'caption-linker.js', __FILE__ ), array('jquery') );
+        wp_enqueue_style( 'caption_linker', plugins_url( 'caption-linker.css', __FILE__ ) );
+        wp_enqueue_style( 'dashicons' );
     }
 }
 
