@@ -1,26 +1,60 @@
+// jQuery function to add insertAtCaret
+jQuery.fn.extend({
+insertAtCaret: function(myValue){
+  return this.each(function(i) {
+    if (document.selection) {
+      //For browsers like Internet Explorer
+      this.focus();
+      var sel = document.selection.createRange();
+      sel.text = myValue;
+      this.focus();
+    }
+    else if (this.selectionStart || this.selectionStart == '0') {
+      //For browsers like Firefox and Webkit based
+      var startPos = this.selectionStart;
+      var endPos = this.selectionEnd;
+      var scrollTop = this.scrollTop;
+      this.value = this.value.substring(0, startPos)+myValue+this.value.substring(endPos,this.value.length);
+      this.focus();
+      this.selectionStart = startPos + myValue.length;
+      this.selectionEnd = startPos + myValue.length;
+      this.scrollTop = scrollTop;
+    } else {
+      this.value += myValue;
+      this.focus();
+    }
+  });
+}
+});
 jQuery(document).ready(function(){
+    // The link to add
     
-    var link = '<span class="wp_themeSkin caption-linker"><a role="button" id="content_link" href="#" class="mceButton mce_link mceButtonEnabled caption-link" aria-labelledby="content_link_voice" title="Insert/edit link (Alt + Shift + A)" tabindex="-1" aria-disabled="false" style="float:right"><span class="mceIcon mce_link" style="padding-top:0"></span><span class="mceVoiceLabel mceIconOnly" style="display: none;" id="content_link_voice">Insert/edit link (Alt + Shift + A)</span></a></span>';
+    var link = '<div class="caption-link" tabindex="-1" role="button" aria-label="Insert/edit link"><button type="button"><i></i></button></div>';
     
+    // Add link to media edit page
     jQuery('#attachment_caption').after(link);
+    
+    // Add caption when thumbnail selected, removing any that may already be around
     jQuery(document).ajaxComplete(function(){
-        jQuery('.caption-linker').remove();
+        jQuery('.caption-link').remove();
         jQuery('label[data-setting=caption]').append(link);
     });
 
+    // Add caption when thumbnail selected
     jQuery(document).on("click", '.thumbnail', function() {
         jQuery('label[data-setting=caption]').append(link);
     });
     
-    jQuery(document).on("click", '.caption-link', function(){
+    //
+    jQuery(document).on("click", '.caption-link button', function(){
         var url=prompt("URL of link", "http://");
         if (url != null) {
             var text=prompt("Text you would like to display", "Learn More");
         }
         if (url != null && text != null) {
-            var box = jQuery(this).parent(".wp_themeSkin").siblings('textarea');
+            var box = jQuery(this).parent().siblings('textarea');
         
-            box.val(box.val() + '<a href="' + url + '">' + text + '</a>');
+            box.insertAtCaret('<a href="' + url + '">' + text + '</a>');
         }
         return false;
     });
