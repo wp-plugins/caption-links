@@ -3,7 +3,7 @@
 Plugin Name: Caption Linker
 Plugin URI: http://weissmike.com/caption-linker
 Description: Add "Insert Link" button to the WordPress caption field in the media window.
-Version: 1.0
+Version: 1.2
 Author: Mike Weiss
 Author URI: http://weissmike.com
 License: GPL2
@@ -32,8 +32,8 @@ class caption_linker {
 
     public function caption_linker_enqueue($hook)  
     {
-        wp_enqueue_script( 'caption_linker', plugins_url( 'caption-linker.js', __FILE__ ), array('jquery') );
-        wp_enqueue_style( 'caption_linker', plugins_url( 'caption-linker.css', __FILE__ ) );
+        wp_enqueue_script( 'caption_linker', plugins_url( 'caption-linker.js', __FILE__ ), array('jquery'), '1.2' );
+        wp_enqueue_style( 'caption_linker', plugins_url( 'caption-linker.css', __FILE__ ), array(), '1.2' );
         wp_enqueue_style( 'dashicons' );
     }
 }

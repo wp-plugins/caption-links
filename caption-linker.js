@@ -29,7 +29,7 @@ insertAtCaret: function(myValue){
 jQuery(document).ready(function(){
     // The link to add
     
-    var link = '<div class="caption-link" tabindex="-1" role="button" aria-label="Insert/edit link"><button type="button"><i></i></button></div>';
+    var link = '<div class="caption-link" tabindex="-1" role="button" aria-label="Insert link"><button type="button">Insert Link</button></div>';
     
     // Add link to media edit page
     jQuery('#attachment_caption').after(link);

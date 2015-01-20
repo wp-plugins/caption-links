@@ -3,8 +3,8 @@ Contributors: weissmike
 Donate link: http://weissmike.com/
 Tags: media, caption, upload, file, link, html
 Requires at least: 3.8
-Tested up to: 4.0
-Stable tag: 1.1
+Tested up to: 4.2
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,6 +27,10 @@ Adds a new button to the media window and edit media screen that allow you to ea
 4. Inserts link in text box
 
 == Changelog ==
+
+= 1.2 =
+* Switched to SVG icon to reduce dependancies
+* Icon courtesy of Open Iconic — www.useiconic.com/open
 
 = 1.1 =
 * Updated to utilize icon font
